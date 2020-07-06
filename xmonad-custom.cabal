@@ -1,0 +1,46 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: fabea765466c84bc9efab790a19e91a2c915f24ef437ff6c61cebaa65c99cf9f
+
+name:           xmonad-custom
+version:        0.1.0.0
+homepage:       https://github.com/githubuser/haskell-playground#readme
+bug-reports:    https://github.com/githubuser/haskell-playground/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+build-type:     Simple
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/haskell-playground
+
+library
+  exposed-modules:
+      XMonad.Actions.ConditionalKeys
+  other-modules:
+      Paths_xmonad_custom
+  hs-source-dirs:
+      lib
+  build-depends:
+      base >=4.7 && <5
+    , xmonad
+    , xmonad-contrib
+  default-language: Haskell2010
+
+executable xmonad-testing
+  main-is: Config.hs
+  other-modules:
+      Paths_xmonad_custom
+  ghc-options: -Wall -fno-warn-missing-signatures
+  build-depends:
+      base
+    , xmonad
+    , xmonad-contrib
+    , xmonad-custom
+  default-language: Haskell2010

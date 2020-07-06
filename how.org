@@ -1,0 +1,9 @@
+#+TITLE: How
+
+1. new directory
+2. clone xmonad, xmonad-contrib
+3. create package.yaml with library config for files under lib/ and executable config for xmonad.hs/Config.hs or whatever primary main/configuration file is
+4. stack init
+5. stack build
+6. stack install :xmonad <-- install xmonad executable built from checked-out sources
+7. build script to install and copy executable built from xmonad.hs (needed for xmonad --recompile to work)

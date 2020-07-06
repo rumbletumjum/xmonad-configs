@@ -1,0 +1,25 @@
+name:                xmonad-custom
+version:             0.1.0.0
+github:              "githubuser/haskell-playground"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2020 Author name here"
+
+dependencies:
+  - base >= 4.7 && < 5
+  - xmonad
+  - xmonad-contrib
+
+library:
+  source-dirs: lib
+
+executables:
+  xmonad-testing:
+    main: Config.hs
+    ghc-options: -Wall -fno-warn-missing-signatures
+    dependencies:
+      - xmonad-custom
+      - base
+      - xmonad
+      - xmonad-contrib
