@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: fabea765466c84bc9efab790a19e91a2c915f24ef437ff6c61cebaa65c99cf9f
+-- hash: 05a24dcbe60c337fbc71b869fe9e8984540b432876b047e4d8d6f87b4270da5e
 
 name:           xmonad-custom
 version:        0.1.0.0
@@ -22,6 +22,7 @@ source-repository head
 
 library
   exposed-modules:
+      Theme
       XMonad.Actions.ConditionalKeys
   other-modules:
       Paths_xmonad_custom

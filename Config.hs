@@ -52,6 +52,9 @@ import Data.Ratio
 import System.Exit
 import System.IO
 
+import Theme (solarizedDark, borderNormalColor, borderFocusedColor)
+import qualified Theme as T (borderWidth)
+
 import qualified XMonad.StackSet as W
 
 terminal' = "xst"
@@ -69,7 +72,7 @@ main = do
   xmonad $ docks $ ewmh $ withNavigation2DConfig myNav2DConf $ def
     { terminal              = terminal'
     , modMask               = mod4Mask
-    , borderWidth           = 4
+    , borderWidth           = 2
     , manageHook            = manageHook' <+> manageHook def
     , layoutHook            = layoutHook'
     , startupHook           = startupHook'
@@ -89,8 +92,8 @@ main = do
                              , ppSort = fmap (namedScratchpadFilterOutWorkspace.) (ppSort defaultPP)
                              } >> masterHistoryHook
     , handleEventHook       = handleEventHook def <+> fullscreenEventHook
-    , normalBorderColor     = "#11141b"
-    , focusedBorderColor    = "#798cb3"
+    , normalBorderColor     = "#222222"
+    , focusedBorderColor    = "#285577"
     --, focusedBorderColor    = "#e6ac32"
     , workspaces            = workspaces'
     } `additionalKeysP` myKeys
@@ -137,7 +140,7 @@ scratchpads = [ NS "scratchTerm" "xst -n scratchpad" (resource =? "scratchpad") 
 layoutHook' = avoidStruts
               $ onWorkspace "work" imLayout
               $ smartBorders
-              $ spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True
+              -- $ spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True
               $ stdLayouts
   where
     tall = renamed [Replace "tall"]
@@ -146,8 +149,10 @@ layoutHook' = avoidStruts
            $ ResizableTall 1 (1/20) (2/3) []
     tcm = renamed [Replace "tcm"]
            $ ThreeColMid 1 (3/100) (1/2)
+    mc = renamed [Replace "mc"]
+	   $ multiCol [1, 1, 2] 4 (3/100) (-1/2)
     grid = renamed [Replace "grid"] $ Grid (16/10)
-    stdLayouts = tall ||| tcm ||| wide ||| grid
+    stdLayouts = tall ||| mc ||| tcm ||| wide ||| grid
     imLayout = withIM (2/3) (ClassName "Wfica") stdLayouts
 
 myLayoutHook = avoidStruts
@@ -257,8 +262,8 @@ myKeys =
 startupHook' = do
    -- spawn "mkfifo /tmp/xmonad-workspace-log"
    -- spawn "$HOME/.config/polybar/launch.sh"
-   spawn "picom --config /home/rkb/.config/picom/picom.conf"
-   spawn "hsetroot -solid #002b36"
+   -- spawn "picom --config /home/rkb/.config/picom/picom.conf"
+   spawn "hsetroot -solid '#282828'"
    -- spawn "nitrogen --restore"
 
 -- myStartupHook = do
@@ -269,7 +274,7 @@ manageHook' = composeAll
    [ className =? "Chromium"        --> doShift "web"
    , className =? "firefox"         --> doShift "web"
    , className =? "Wfica"           --> doShift "work"
-   , className =? "mpv"    --> doFloat
+   --	, className =? "mpv"    --> doFloat
    , className =? "Lxappearance"    --> doFloat
    , className =? "Thunar"          --> doFloat
    , className =? "Nitrogen"          --> doFloat
