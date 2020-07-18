@@ -1,0 +1,6 @@
+*.hi
+*.o
+
+prompt-history
+*.rej
+
